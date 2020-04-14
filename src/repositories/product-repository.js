@@ -1,9 +1,11 @@
 const Produto = require('../app/models/product');
-const mongoose = require('mongoose');
 
 exports.get = async () => {
-    const res = await Produto.find();
-    return res;
+    const products = await Produto.find();
+    
+    const total = await Produto.count();
+
+    return {products, total};
 }
 
 exports.getById = async (id) => {

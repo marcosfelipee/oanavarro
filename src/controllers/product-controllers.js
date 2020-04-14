@@ -24,8 +24,9 @@ exports.post = async (req, res) => {
 
 exports.getAll = async (req, res) => {
     try {
-        var data = await repository.get();
-        res.status(200).send(data);
+        const data = await repository.get();
+
+        res.status(200).json(data);
     } catch (error) {
         res.status(500).send({
             message: "Falha na requisição",
