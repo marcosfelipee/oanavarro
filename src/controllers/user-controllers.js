@@ -16,7 +16,7 @@ exports.getAll = async (req, res) => {
 exports.getById = async (req, res) => {
     try {
         const id = req.params.userId;
-        var data = await repository.getById(id);
+        const data = await repository.getById(id);
         res.status(200).send(data);
     } catch (error){
         res.status(500).send({

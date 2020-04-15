@@ -29,3 +29,13 @@ exports.put = async(id, data) =>{
 exports.delete = async(id) =>{
     await User.findOneAndRemove(id);
 }
+
+exports.login = async (email, password) => {
+  const user = await User.findOne({ email });
+
+  if (!user) return null; 
+
+  if (password !== user.password) return null;
+
+  return user;
+}
