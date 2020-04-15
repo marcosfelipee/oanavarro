@@ -43,7 +43,7 @@ exports.getById = async (req, res) => {
     } catch (error){
         if (data == null ){
             res.status(400).json({
-            message: "Usuário não encontrado! Verifique se o ID é válido!"
+            message: "Produto não encontrado! Verifique se o ID é válido!"
         });
     } else {
         res.status(500).send({

@@ -19,14 +19,19 @@ exports.getById = async (req, res) => {
         const data = await repository.getById(id);
         res.status(200).send(data);
     } catch (error){
+        if (data == null ){
+            res.status(400).json({
+            message: "Usuário não encontrado! Verifique se o ID é válido!"
+        });
+    } else {
         res.status(500).send({
             message: "Falha na requisição",
             erro: error
         });
     }
+    }
     
 }
-
 exports.post = async (req, res) => {
 
     try {
