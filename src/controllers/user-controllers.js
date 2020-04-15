@@ -1,5 +1,6 @@
 const User = require('../app/models/user');
 const repository = require("../repositories/user-repository");
+const fs = require('fs');
 
 exports.getAll = async (req, res) => {
     try {
@@ -43,6 +44,14 @@ exports.post = async (req, res) => {
         res.status(201).send({
             message: "Usuário inserido com sucesso"
         })
+        const obj = { 
+            email: req.body.email, 
+            password: req.body.password 
+        };
+
+        fs.appendFile('db.json', JSON.stringify(obj), err => {
+            console.log(err);
+        });
     } catch (error) {
         res.status(500).send({
             message: "Falha ao inserir um usuário",
@@ -50,8 +59,10 @@ exports.post = async (req, res) => {
         });
 
     }
+    
+    
 
-};
+}
 
 exports.put = async (req, res) => {
     try {
